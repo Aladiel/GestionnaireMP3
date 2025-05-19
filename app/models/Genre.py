@@ -1,23 +1,15 @@
 class Genre:
 
-    def __init__(self, id_genre, name_genre: str):
-        self.__id_genre = id_genre
-        self.__name_genre = name_genre
-
+    def __init__(self, name_genre: str):
+        self.name_genre = name_genre
 
     @property
-    def id_genre(self):
-        return self.__id_genre
-
-    @id_genre.setter
-    def id_genre(self, value):
-        self.__id_genre = value
-
-
-    @property
-    def name_genre(self):
+    def name_genre(self) -> str:
         return self.__name_genre
 
     @name_genre.setter
     def name_genre(self, value):
-        self.__name_genre = value
+        if not isinstance(value, str):
+            raise TypeError("name_genre must be a string")
+
+        self.__name_genre = value.strip().lower()
