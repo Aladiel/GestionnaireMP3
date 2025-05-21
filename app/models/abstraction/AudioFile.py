@@ -1,26 +1,16 @@
 from abc import ABC, abstractmethod
-
+import os
 
 class AudioFile(ABC):
-    def __init__(self, filename):
-        self.__filename = filename
-        # Variable extension ? Récupérer le .mp3 ou autre ?
+    def __init__(self, filepath: str):
+        if not os.path.isfile(filepath):
+            raise FileNotFoundError(f"Fichier introuvable : {filepath}")
+        self.filepath = filepath
 
     @abstractmethod
-    def filename(self):
+    def extract_metadata(self):
         pass
+
     @abstractmethod
-    def get_artist(self):
-        pass
-    @abstractmethod
-    def get_title(self):
-        pass
-    @abstractmethod
-    def get_album(self):
-        pass
-    @abstractmethod
-    def get_genre(self):
-        pass
-    @abstractmethod
-    def get_duration(self):
+    def get_duration(self) -> float:
         pass
