@@ -21,22 +21,24 @@ class MP3(AudioFile):
         try:
             f = music_tag.load_file(self.filepath)
 
-            if str(f['artist']) in BDD:
-                db.query.get(artist_name['name_artist'])   ## --> c'est de la merde, à revoir
-            else:
-                self.__artist = str(f['artist'])
-
-            if str(f['album']) in BDD:
-                db.query.get(album_name['name_album'])  ## --> c'est de la merde, à revoir
-            else:
-                self.__album = str(f['album'])
-
-            if str(f['genre']) in BDD:
-                db.query.get(genre['genre'])  ## --> c'est de la merde, à revoir
-            else:
-                self.__genre = str(f['genre'])
-
+            # if str(f['artist']) in BDD:
+            #     db.query.get(artist_name['name_artist'])   ## --> c'est de la merde, à revoir
+            # else:
+            #     self.__artist = str(f['artist'])
+            #
+            # if str(f['album']) in BDD:
+            #     db.query.get(album_name['name_album'])  ## --> c'est de la merde, à revoir
+            # else:
+            #     self.__album = str(f['album'])
+            #
+            # if str(f['genre']) in BDD:
+            #     db.query.get(genre['genre'])  ## --> c'est de la merde, à revoir
+            # else:
+            #     self.__genre = str(f['genre'])
             self.__title = str(f['title'])
+            self.__artist = str(f['artist'])
+            self.__album = str(f['album'])
+            self.__genre = str(f['genre'])
             self.__track_number = f['track_number'].value
 
         except Exception as e:
