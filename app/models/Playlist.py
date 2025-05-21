@@ -14,7 +14,7 @@ class Playlist:
         if not isinstance(value, str):
             raise TypeError("name_playlist must be a string")
 
-        self.name_playlist = value.strip().lower()
+        self.__name_playlist = value.strip().lower()
 
     @property
     def description(self) -> str:
