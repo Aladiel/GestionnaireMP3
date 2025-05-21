@@ -40,15 +40,26 @@ class MP3(AudioFile):
             self.__album = str(f['album'])
             self.__genre = str(f['genre'])
             self.__track_number = f['track_number'].value
+            self.__duration = self.__get_duration
 
         except Exception as e:
             print(f"Erreur lecture des metadata avec music-tag : {e}")
 
-    def get_duration(self) -> float:
+
+    def __get_duration(self, music_tag_obj) -> float:
+        # Essai avec music-tag (si disponible)
         try:
-            f = music_tag.load_file(self.filepath)
-            return round(f.length, 2)
-        except Exception:
+            return round(music_tag_obj.length, 2)
+        except AttributeError:
+            pass  # continue vers fallback mutagen
+
+        # Fallback avec mutagen
+        try:
+            from mutagen.mp3 import MP3 as MutagenMP3
+            audio = MutagenMP3(self.filepath)
+            return round(audio.info.length, 2)
+        except Exception as e:
+            print(f"[Erreur] Durée non récupérable : {e}")
             return 0.0
 
 
