@@ -1,7 +1,7 @@
 class Tag:
 
     def __init__(self, name_tag: str):
-        self.name_tag = name_tag
+        self.__name_tag = name_tag
 
     @property
     def name_tag(self) -> str:

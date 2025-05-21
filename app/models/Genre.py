@@ -1,7 +1,7 @@
 class Genre:
 
     def __init__(self, name_genre: str):
-        self.name_genre = name_genre
+        self.__name_genre = name_genre
 
     @property
     def name_genre(self) -> str:

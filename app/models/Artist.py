@@ -1,7 +1,7 @@
 class Artist:
 
     def __init__(self, name_artist: str):
-        self.name_artist = name_artist
+        self.__name_artist = name_artist
 
     @property
     def name_artist(self) -> str:

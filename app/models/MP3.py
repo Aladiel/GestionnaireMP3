@@ -2,6 +2,9 @@ import music_tag
 
 from typing import Optional
 from app.models.abstraction.AudioFile import AudioFile
+from app.models.Genre import Genre
+from app.models.Artist import Artist
+from app.models.Album import Album
 
 
 class MP3(AudioFile):
