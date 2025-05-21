@@ -2,10 +2,10 @@ from app.models.Artist import Artist
 
 class Album:
     def __init__(self, name_album: str, artist: Artist, artwork: str = "", label: str = ""):
-        self.name_album = name_album
-        self.artist = artist
-        self.artwork = artwork
-        self.label = label
+        self.__name_album = name_album
+        self.__artist = artist
+        self.__artwork = artwork
+        self.__label = label
 
 
     @property
