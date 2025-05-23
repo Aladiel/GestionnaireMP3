@@ -12,3 +12,4 @@ class SQLServerDatabase(AbstractDatabase):
     #   - Interface Graphique
     #   - Redirection de fichiers
     #   - Gestion de playlists
+    #   - finir sieste
