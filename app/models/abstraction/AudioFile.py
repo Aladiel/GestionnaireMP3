@@ -1,8 +1,9 @@
 from abc import ABC, abstractmethod
 import os
+from pathlib import Path
 
 class AudioFile(ABC):
-    def __init__(self, filepath: str):
+    def __init__(self, filepath: Path):
         if not os.path.isfile(filepath):
             raise FileNotFoundError(f"Fichier introuvable : {filepath}")
         self.filepath = filepath
@@ -12,5 +13,5 @@ class AudioFile(ABC):
         pass
 
     @abstractmethod
-    def get_duration(self) -> float:
+    def get_duration(self, music_tag_obj) -> float:
         pass

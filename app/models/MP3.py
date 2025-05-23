@@ -5,17 +5,19 @@ from app.models.abstraction.AudioFile import AudioFile
 from app.models.Genre import Genre
 from app.models.Artist import Artist
 from app.models.Album import Album
+from pathlib import Path
+
 
 
 class MP3(AudioFile):
-    def __init__(self, filepath:str):
+    def __init__(self, filepath:Path):
         super().__init__(filepath)
         self.__title:Optional[str] = None
         self.__artist:Optional[Artist] = None
         self.__album:Optional[Album] = None
         self.__genre :Optional[Genre] = None
         self.__track_number:Optional[str] = None
-        self.__duration:float = self.get_duration()
+        self.__duration:float = 0.0
 
     def extract_metadata(self):
         try:
@@ -40,13 +42,13 @@ class MP3(AudioFile):
             self.__album = str(f['album'])
             self.__genre = str(f['genre'])
             self.__track_number = f['track_number'].value
-            self.__duration = self.__get_duration
+            self.__duration = self.get_duration(f)
 
         except Exception as e:
             print(f"Erreur lecture des metadata avec music-tag : {e}")
 
 
-    def __get_duration(self, music_tag_obj) -> float:
+    def get_duration(self, music_tag_obj) -> float:
         # Essai avec music-tag (si disponible)
         try:
             return round(music_tag_obj.length, 2)

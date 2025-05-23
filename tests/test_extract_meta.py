@@ -2,10 +2,30 @@ import os
 from app.models.MP3 import MP3
 import music_tag
 from mutagen.mp3 import MP3 as MutagenMP3
+from pathlib import Path
 
 # Chemin vers un fichier MP3 réel pour tester
 base = os.path.dirname(__file__)
 FICHIER_TEST = os.path.join(base, "fichiers_mp3", "Khazad-Dûm.mp3")
+dossier = Path("fichiers_mp3")
+
+def get_mp3_in_file():
+    for file in dossier.glob("*.mp3"):
+        yield file
+
+def test():
+    for mp3 in get_mp3_in_file():
+        file = MP3(mp3)
+        file.extract_metadata()
+
+        print(file.title)
+        print(file.artist)
+        print(file.album)
+        print(file.genre)
+        print(file.track_number)
+        print(file.duration, "\n")
+
+
 
 
 def test_mp3_class():
@@ -37,4 +57,4 @@ def test_mp3_class():
 
 
 if __name__ == "__main__":
-    test_mp3_class()
+    test()
