@@ -10,6 +10,7 @@ class SQLiteDatabase(AbstractDatabase):
 
     def connect(self):
         self.__conn = sqlite3.connect(self.__db_path)
+        # self.__conn = db.connect(self.__db_path)
 
     def insert_mp3(self, mp3):
         cursor = self.__conn.cursor()
